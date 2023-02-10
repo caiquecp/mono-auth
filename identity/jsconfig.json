@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "module": "es6",
-    "target": "es6"
+    "module": "es2022",
+    "target": "es2022",
+    "moduleResolution": "node16",
+    // "checkJs": true,
   },
   "include": ["src/**/*", "index.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
