@@ -1,8 +1,17 @@
 import { hashPassword } from '../auth.js'
 import { registerUserSchema } from '../schemas/user.js'
 
-const createService = () => {
-  const register = (registerUserInput) => {
+const createService = (userRepository) => {
+  const getAll = async () => {
+    return userRepository.getAll()
+  }
+
+  /**
+   * Register a new user.
+   * @param {object} registerUserInput
+   * @returns {Promise<object>} The new user.
+   */
+  const register = async (registerUserInput) => {
     const { error, value: input } = registerUserSchema.validate(registerUserInput, {
       abortEarly: false,
     })
@@ -17,14 +26,13 @@ const createService = () => {
       password: hashedPassword,
     }
 
-    /**
-     * TODO:
-     * 1. save user in the database
-     * 2. load user (with id), and return it to client
-     */
+    await userRepository.add(user)
+
+    return userRepository.getByEmail(user.email)
   }
 
   return {
+    getAll,
     register,
   }
 }

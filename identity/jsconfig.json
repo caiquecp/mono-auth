@@ -5,6 +5,6 @@
     "moduleResolution": "node16",
     // "checkJs": true,
   },
-  "include": ["src/**/*", "index.js"],
+  "include": ["src/**/*", "index.js", "init-db.js"],
   "exclude": ["node_modules"],
 }
